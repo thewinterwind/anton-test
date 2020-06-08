@@ -42,7 +42,7 @@ class StripeController extends CI_Controller {
                 "description" => "Test payments."
         ]);
 
-        var_dump($charge);
+        // var_dump($charge);
         // var_dump($stripe);
         die();
             
