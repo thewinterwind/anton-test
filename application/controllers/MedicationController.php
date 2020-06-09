@@ -7,7 +7,7 @@ class MedicationController extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library("session");
-        $this->load->model("medications_model");
+        $this->load->model("medication_model");
      }
 
     public function requestForPrescription($id){
