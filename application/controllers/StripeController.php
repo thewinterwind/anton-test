@@ -32,25 +32,43 @@ class StripeController extends CI_Controller {
      *
      * @return Response
     */
-    public function stripePost()
+    public function stripePost($id)
     {
         require_once('application/libraries/stripe-php/init.php');
+
+      $data['transaction'] = $this->medication_model->viewRequestedPrescription($id);
+
+    //   var_dump($data['transaction']['price']);
+    //   die();
     
       $stripe = \Stripe\Stripe::setApiKey($this->config->item('stripe_secret'));
      
       $charge = \Stripe\Charge::create ([
-                "amount" => 50 * 40,
+                "amount" => $data['transaction']['price'] * 100,
                 "currency" => "usd",
                 "source" => $this->input->post('stripeToken'),
-                "description" => "Test payments."
+                "description" => $data['transaction']['name']
         ]);
 
         // var_dump($charge);
         // var_dump($stripe);
         // die();
-            
-        $this->session->set_flashdata('success', 'Payment made successfully.');
+
+        if($charge['status'] == 'succeeded'){
+            $this->medication_model->paymentSuccess($id);
+            $this->session->set_flashdata('success-payment', 'Payment made successfully.');
+        } else {
+            $this->session->set_flashdata('error', 'Something went wrong.');
+        }
              
-        redirect('/my-stripe', 'refresh');
+        redirect('patient', 'refresh');
+    }
+
+    public function payment($id){
+        $data['transaction'] = $this->medication_model->viewRequestedPrescription($id);
+
+        $this->load->view('templates/header');
+        $this->load->view('stripe/my_stripe', $data);
+        $this->load->view('templates/scripts');
     }
 }

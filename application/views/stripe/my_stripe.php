@@ -18,8 +18,15 @@
                             <p class="my-auto"><?php echo $this->session->flashdata('success'); ?></p>
                         </div>
                     <?php } ?>
+
+                    <?php if($this->session->flashdata('error')){ ?>
+                    <div class="alert alert-danger text-center my-auto">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <p class="my-auto"><?php echo $this->session->flashdata('error'); ?></p>
+                        </div>
+                    <?php } ?>
      
-                    <form role="form" action="<?php echo base_url(); ?>stripePost" method="post" class="require-validation"
+                    <form role="form" action="<?php echo base_url('stripePost/' . $transaction['id']); ?>" method="post" class="require-validation"
                                                      data-cc-on-file="false"
                                                     data-stripe-publishable-key="<?php echo $this->config->item('stripe_key') ?>"
                                                     id="payment-form">
@@ -60,7 +67,7 @@
                        
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($20)</button>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($<?php echo $transaction['price'] ?>)</button>
                             </div>
                         </div>
                              

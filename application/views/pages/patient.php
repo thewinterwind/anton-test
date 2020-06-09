@@ -7,6 +7,13 @@
                         </div>
                     <?php } ?>
 
+                    <?php if($this->session->flashdata('error')){ ?>
+                    <div class="alert alert-danger text-center my-auto">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <p class="my-auto"><?php echo $this->session->flashdata('error'); ?></p>
+                        </div>
+                    <?php } ?>
+
 <table class="table">
     <thead>
         <tr>
@@ -33,6 +40,20 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+
+                    <?php if($this->session->flashdata('success-payment')){ ?>
+                    <div class="alert alert-success text-center my-auto">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <p class="my-auto"><?php echo $this->session->flashdata('success-payment'); ?></p>
+                        </div>
+                    <?php } ?>
+
+                    <?php if($this->session->flashdata('error')){ ?>
+                    <div class="alert alert-danger text-center my-auto">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <p class="my-auto"><?php echo $this->session->flashdata('error'); ?></p>
+                        </div>
+                    <?php } ?>
 
 
 <?php if (count($transactions) != 0) : ?>
@@ -65,7 +86,7 @@
                     <?php  endif; ?>
                 </td>    
                 <?php  if($trans['status'] == 2) : ?>
-                    <td> <a href="" class="btn btn-primary"> Pay via Stripe</a> </td>
+                    <td> <a href="<?php echo base_url('payment/'.$trans['id']); ?>" class="btn btn-primary"> Pay via Stripe</a> </td>
                 <?php  endif; ?>    
             </tr>
         <?php endforeach; ?>

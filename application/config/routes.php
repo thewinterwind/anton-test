@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 $route['my-stripe'] = "StripeController";
-$route['stripePost']['post'] = "StripeController/stripePost";
+$route['stripePost/(:any)']['post'] = "StripeController/stripePost/$1";
 
 $route['patient'] = "PagesController/patientPage";
 $route['doctor'] = "PagesController/doctorPage";
@@ -13,7 +13,9 @@ $route['view-requested-prescription/(:any)'] = "MedicationController/viewRequest
 
 $route['approve-perscription/(:any)'] = "MedicationController/approvePrescription/$1";
 
-$route['default_controller'] = 'StripeController';
+$route['payment/(:any)'] = "StripeController/payment/$1";
+
+$route['default_controller'] = 'PagesController/patientPage';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

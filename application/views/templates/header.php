@@ -34,14 +34,11 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url(); ?>">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <!-- <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url(); ?>patient">Patient <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url(); ?>doctor">Doctor <span class="sr-only"></span></a>
-      </li> -->
+      </li>
     </ul>
   </div>
 </nav>

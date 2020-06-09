@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Medications_model extends CI_Model {
+class Medication_model extends CI_Model {
 
     function __construct()
     {
@@ -42,5 +42,13 @@ class Medications_model extends CI_Model {
         $this->db->where_in('status', ['2','3']);
         $query = $this->db->get('medications');
         return $query->result_array();
+    }
+
+    public function paymentSuccess($id){
+        $data = array (
+            'status' => 3
+        );
+        $this->db->where('id', $id);
+        return $this->db->update('medications', $data);
     }
 }
