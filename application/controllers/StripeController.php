@@ -21,7 +21,10 @@ class StripeController extends CI_Controller {
     */
     public function index()
     {
+        $this->load->view('templates/header');
         $this->load->view('stripe/my_stripe');
+        $this->load->view('templates/scripts');
+
     }
        
     /**
