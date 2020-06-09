@@ -44,7 +44,7 @@ class StripeController extends CI_Controller {
 
         // var_dump($charge);
         // var_dump($stripe);
-        die();
+        // die();
             
         $this->session->set_flashdata('success', 'Payment made successfully.');
              
