@@ -9,7 +9,7 @@ class StripeController extends CI_Controller {
      * @return Response
     */
     public function __construct() {
-       parent::__construct();
+    //    parent::__construct();
        $this->load->library("session");
        $this->load->helper('url');
     }
