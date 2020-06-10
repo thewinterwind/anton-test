@@ -39,5 +39,9 @@ class PagesController extends CI_Controller {
         $this->load->view('pages/invoice');
     }
 
+    public function testPage(){
+        $this->load->view('pages/test');
+    }
+
 
 }

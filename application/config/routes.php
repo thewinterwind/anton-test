@@ -9,6 +9,8 @@ $route['patient'] = "PagesController/patientPage";
 $route['doctor'] = "PagesController/doctorPage";
 $route['reset'] = "PagesController/resetPage";
 $route['invoice'] = "PagesController/invoicePage";
+$route['test'] = "PagesController/testPage";
+
 
 $route['request-for-prescription/(:any)'] = "MedicationController/requestForPrescription/$1";
 $route['view-requested-prescription/(:any)'] = "MedicationController/viewRequestedPrescription/$1";

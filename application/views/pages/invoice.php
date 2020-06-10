@@ -19,6 +19,7 @@
     <title>Billing</title> 
   </head>
   <body>
+<div class="vertical-centered-box">  
     <section class="billing-sec">
       <div class="widget-container">
         <ul class="tabs">
@@ -28,8 +29,8 @@
         </ul>
         <div class="tab_container">
           <div id="invoices" class="tab_content">
-              <span class="balance-pay">Balance $224.60</span>
-              <div class="sec-row">
+              <span class="balance-pay pt-5 mt-5">Balance $224.60</span>
+              <div class="sec-row" style="width: 95%">
                 <div class="sec-title">
                   <h3>Invoice</h3>
                 </div>
@@ -64,7 +65,7 @@
                 </div>
               </div>
   
-              <div class="sec-row">
+              <div class="sec-row" style="width: 95%">
                 <a href="" class="btn-all btn-green bdr-radius btn-color-white js-open-modal" data-modal-id="popup">New Invoice</a>
                 <div class="srcblk">
                   <input type="text" placeholder="Search"> 
@@ -72,7 +73,7 @@
               </div>
   
               <div class="resp-tbl">
-              <table class="invoice-tbl" cellpadding="0" cellspacing="0">
+              <table class="invoice-tbl" cellpadding="0" cellspacing="0" style="width: 95%">
                 <tr>
                   <th><input type="checkbox"></th>
                   <th>Date</th>
@@ -99,7 +100,7 @@
                 </tr>
               </table>
                </div>
-               <div class="pagination-sec">
+               <div class="pagination-sec" style="width: 95%">
                   <div class="pagination">
                       <a href="#"><img src="images/prevL-icon.jpg" alt=""></a>
                       <a href="#"><img src="images/prev-icon.jpg" alt=""></a>
@@ -122,7 +123,7 @@
 
     <div id="popup" class="modal-box"> 
         <a href="#" class="js-modal-close close">×</a>
-      <div class="modal-body">
+      <div class="modal-body pt-3">
         
         <div class="invoice-frm-sec">
           <div class="frm-widgt">
@@ -306,7 +307,7 @@
             </div>
             <div class="note-services">
               <ul>
-                <li><label><input type="checkbox" class="form-check-input"> Telehealth Service</label></li>
+                <li><label class="pl-3"><input type="checkbox" class="form-check-input"> Telehealth Service</label></li>
                 <!-- <li><label><input type="checkbox" class="form-check-input"> Hospital Service</label></li>
                 <li><label><input type="checkbox" class="form-check-input"> Print Medicare Statement</label></li> -->
               </ul>
@@ -496,6 +497,7 @@
         </div>
         <div style="clear:both"></div>
       </div>
+    </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
