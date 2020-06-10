@@ -34,7 +34,7 @@
                         <div class='form-row row'>
                             <div class='col-md-12 form-group required'>
                                 <label class='control-label'>Name on Card</label> <input
-                                    class='form-control' type='text' required> 
+                                    class='form-control' type='text' value="Test" required> 
                             </div>
                         </div>
      
@@ -42,27 +42,34 @@
                             <div class='col-md-12 form-group required'>
                                 <label class='control-label'>Card Number</label> <input
                                     autocomplete='off' class='form-control card-number'
-                                    type='text' required>
+                                    type='text' value="4242 4242 4242 4242" required>
                             </div>
                         </div>
-      
+                        
                         <div class='form-row row'>
                             <div class='col-xs-12 col-md-4 form-group cvc required'>
                                 <label class='control-label'>CVC</label> <input autocomplete='off'
                                     class='form-control card-cvc' placeholder='ex. 311' size='4'
-                                    type='text' required>
+                                    type='text' value="123" required>
                             </div>
                             <div class='col-xs-12 col-md-4 form-group expiration required'>
                                 <label class='control-label'>Expiration Month</label> <input
                                     class='form-control card-expiry-month' placeholder='MM' size='2'
-                                    type='text'>
+                                    type='text' value="12" required>
                             </div>
                             <div class='col-xs-12 col-md-4 form-group expiration required'>
                                 <label class='control-label'>Expiration Year</label> <input
                                     class='form-control card-expiry-year' placeholder='YYYY' size='4'
-                                    type='text' required>
+                                    type='text' value="2024" required>
                             </div>
                         </div>
+
+                        <!-- <div class='form-row row'>
+                            <div class='col-md-12 error form-group hide'>
+                                <div class='alert-danger alert'>Please correct the errors and try
+                                    again.</div>
+                            </div>
+                        </div> -->
       
                        
                         <div class="row">

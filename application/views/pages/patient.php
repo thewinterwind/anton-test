@@ -94,3 +94,6 @@
     </table>
 
 <?php endif; ?>
+
+
+<a class="btn btn-secondary mt-5 text-white" href="<?php echo base_url(); ?>reset">Reset</a>

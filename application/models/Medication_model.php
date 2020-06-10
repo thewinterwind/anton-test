@@ -51,4 +51,19 @@ class Medication_model extends CI_Model {
         $this->db->where('id', $id);
         return $this->db->update('medications', $data);
     }
+
+    public function resetStatus(){
+        $query = $this->db->get('medications');
+
+        $data = array (
+            'status' => 0
+        );
+
+        foreach ($query->result() as $row)
+        {
+            $this->db->update('medications', $data);
+        }
+
+        return $query->result_array();
+    }
 }

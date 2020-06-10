@@ -45,7 +45,7 @@ class StripeController extends CI_Controller {
      
       $charge = \Stripe\Charge::create ([
                 "amount" => $data['transaction']['price'] * 100,
-                "currency" => "usd",
+                "currency" => "aud",
                 "source" => $this->input->post('stripeToken'),
                 "description" => $data['transaction']['name']
         ]);

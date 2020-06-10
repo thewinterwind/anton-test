@@ -27,4 +27,17 @@ class PagesController extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
+    public function resetPage(){
+
+        $data['medications'] = $this->medication_model->resetStatus();
+      redirect('patient', 'refresh');
+
+    }
+
+    public function invoicePage(){
+        $this->load->view('templates/header');
+        $this->load->view('pages/invoice');
+    }
+
+
 }

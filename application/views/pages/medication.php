@@ -17,8 +17,11 @@
                 </div>
 
                 <div class="form-group" style="height: 100%">
-                    <label >Price USD:</label>
-                   <input type="number" min="0" name="price" required>
+                    <label >Price AUD:</label>
+                   <select name="price" style="width: 125px">
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                   </select>
                 </div>
                 <button class="btn btn-success">Submit and Approve</button>
             </form>
