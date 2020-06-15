@@ -43,7 +43,7 @@ class Invoice_model extends CI_Model {
     }
 
     public function viewInvoice($id){
-        $query = $this->db->get_where('invoices', array('id' => $id));
+        $query = $this->db->get_where('invoices', array('medication_id' => $id));
 		return $query->row_array();
     }
 }

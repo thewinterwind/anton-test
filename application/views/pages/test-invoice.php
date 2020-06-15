@@ -28,7 +28,7 @@
                 <?php  endif; ?>
             </td>
             <td>
-                <a href="<?php echo site_url('viewInvoice/'. $trans['id']); ?>" class="btn btn-primary">View</a>
+                <a href="<?php echo site_url('viewInvoice/'. $trans['medication_id']); ?>" class="btn btn-primary">View</a>
             </td>
           
         </tr>
