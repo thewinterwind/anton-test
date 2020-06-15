@@ -1,6 +1,6 @@
 <h1>Doctor Page</h1>
 
-<h5>Requested Prescription</h5>
+<h5>Requested Prescriptions</h5>
 
 
 <table class="table">
