@@ -43,6 +43,9 @@
         <a class="nav-link" href="<?php echo base_url(); ?>invoice">Invoice <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url(); ?>test-invoice">Test Invoice <span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url(); ?>test-form-api">Test Form <span class="sr-only"></span></a>
       </li>
     </ul>

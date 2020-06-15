@@ -56,6 +56,7 @@ class StripeController extends CI_Controller {
 
         if($charge['status'] == 'succeeded'){
             $this->medication_model->paymentSuccess($id);
+            $this->invoice_model->paymentSuccess($id);
             $this->session->set_flashdata('success-payment', 'Payment made successfully.');
         } else {
             $this->session->set_flashdata('error', 'Something went wrong.');
@@ -70,5 +71,12 @@ class StripeController extends CI_Controller {
         $this->load->view('templates/header');
         $this->load->view('stripe/my_stripe', $data);
         $this->load->view('templates/scripts');
+    }
+
+    public function buttonStripe(){
+        $this->load->view('templates/header');
+        $this->load->view('stripe/button');
+        $this->load->view('templates/footer');
+
     }
 }

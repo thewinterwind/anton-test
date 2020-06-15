@@ -4,12 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // Stripe
 $route['my-stripe'] = "StripeController";
 $route['stripePost/(:any)']['post'] = "StripeController/stripePost/$1";
+$route['stripe-button'] = "StripeController/buttonStripe";
+
 
 // Pages
 $route['patient'] = "PagesController/patientPage";
 $route['doctor'] = "PagesController/doctorPage";
 $route['reset'] = "PagesController/resetPage";
 $route['invoice'] = "PagesController/invoicePage";
+$route['test-invoice'] = "PagesController/testInvoicePage";
+
 
 // Claiming API
 $route['test'] = "ClaimingAPIController/testRequest";
@@ -18,6 +22,11 @@ $route['list-payment'] = "ClaimingAPIController/listPaymentRequest";
 $route['claim'] = "ClaimingAPIController/claimRequest";
 $route['test-form-api'] = "ClaimingAPIController/testFormRequest";
 $route['verifyRequest'] = "ClaimingAPIController/verifyRequest";
+
+
+//Invoice
+$route['createInvoice'] = "InvoiceController/createInvoice";
+$route['viewInvoice/(:any)'] = "InvoiceController/viewInvoice/$1";
 
 
 // Medication and Transaction

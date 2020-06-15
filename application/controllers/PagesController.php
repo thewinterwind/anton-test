@@ -30,6 +30,7 @@ class PagesController extends CI_Controller {
     public function resetPage(){
 
         $data['medications'] = $this->medication_model->resetStatus();
+        $this->invoice_model->deleteAll();
       redirect('patient', 'refresh');
 
     }
@@ -37,6 +38,15 @@ class PagesController extends CI_Controller {
     public function invoicePage(){
         $this->load->view('templates/header');
         $this->load->view('pages/invoice');
+    }
+
+    public function testInvoicePage(){
+
+        $data['invoices'] = $this->invoice_model->getAllInvoices();
+
+        $this->load->view('templates/header');
+        $this->load->view('pages/test-invoice', $data);
+        $this->load->view('templates/footer');
     }
 
 }

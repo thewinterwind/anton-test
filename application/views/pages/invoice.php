@@ -124,19 +124,19 @@
     <div id="popup" class="modal-box"> 
         <a href="#" class="js-modal-close close">×</a>
       <div class="modal-body pt-3">
-        
+        <form action="<?php echo base_url('/createInvoice'); ?>" method="post">
         <div class="invoice-frm-sec">
           <div class="frm-widgt">
             <h2>New Invoice</h2>
             <div class="two-way-frm">
               <div class="form-half frm-group">
                 <label>Patient</label>
-                <input type="text" placeholder="Smith, jane">
+                <input type="text" placeholder="Smith, jane" name="patient" required>
                 <i class="infom">!</i>
               </div>
               <div class="form-half  frm-group">
                 <label>Bill to</label>
-                <select>
+                <select name="type" required>
                   <option>Patient</option>
                   <option>Medicare direct bill</option>
 
@@ -149,7 +149,7 @@
               </div>
               <div class="form-half  frm-group">
                 <label>Provider</label>
-                <select class="width190">
+                <select class="width190" name="provider" required>
                   <option>Mr Anton Pearce</option>
                   <option>Mr John</option>
                 </select>
@@ -157,7 +157,7 @@
               </div>
               <div class="form-half  frm-group">
                 <label>Schedule</label>
-                <select>
+                <select name="sched" required>
                   <option>MBS</option>
                   <option>Patient 2</option>
                 </select>
@@ -166,7 +166,7 @@
               <div class="form-half  frm-group">
                 <label>Referral</label>
                 <div class="referral-sec">
-                  <select>
+                  <select name="referral" required>
                     <option>Mr Anton Pearce</option>
                     <option>Mr John</option>
                   </select>
@@ -177,7 +177,7 @@
               
               <div class="form-half  frm-group">
                 <label>Location</label>
-                <select id="country" class="width190" name="country">
+                <select id="country" class="width190" name="country" required>
                   <option value="Afganistan">Salvado</option>
                   <option value="Albania">Other</option>
                   
@@ -188,7 +188,7 @@
               <div class="form-half  frm-group">
                 <label>Service Date</label>
                 <div class="dtpic">
-                <input type="text" placeholder="">
+                <input type="text" name="service_date" required placeholder="">
                 <img src="images/calendar.png" alt="">
               </div>
               </div>
@@ -200,18 +200,18 @@
             <h2  class="txt-right">Balance $0.00</h2>
             <div class="frm-group">
               <label>Invoice No</label>
-              <input class="light-grey" type="text" placeholder="INV-1">
+              <input class="light-grey" type="text" name="invoice_num" placeholder="INV-1" required>
             </div>
             <div class="frm-group">
               <label>invoice Date</label>
               <div class="dtpic">
-              <input type="text" placeholder="">
+              <input type="text" name="invoice_date" placeholder="" required>
               <img src="images/calendar.png" alt="">
             </div>
             </div>
             <div class="frm-group">
               <label>Terms</label>
-              <select class="width190">
+              <select class="width190" name="terms" required>
                 <option>7 Days</option>
                 <option>15 Days</option>
               </select>
@@ -242,7 +242,7 @@
             <div class="form-half frm-group irnn-main">
               <label>Medicare no/IRN</label>
               <div class="d-flex irnn-input">
-              <input type="text" placeholder="627685212">
+              <input type="text" placeholder="627685212" name="med_num" required>
               <input type="text" placeholder="1" style="width: 35px; margin-left: 5px;">
             </div>
               <span>Verified 02-05-2020</span>
@@ -337,12 +337,13 @@
 
         <div class="frm-grp">
             <a href="" class="btn-all bdr-radius grey-btn">Cancel</a>
+            <button type="submit" class="btn btn-all btn-outline bdr-radius">Save</button>
             <a href="" class="btn-all btn-outline bdr-radius">Print</a>
             <a href="" class="btn-all btn-outline bdr-radius">Hold</a>
             <a href="JavaScript:Void(0);" class="btn-all btn-outline bdr-radius js-open-modal" id="morepay"  >Quick Pay</a>
             <a href="JavaScript:Void(0);" class="btn-all btn-green bdr-radius btn-color-white" id="shiv" data-modal-id="popup2">More Pay</a>
         </div>
-
+      </form>
         <div class="online-claim">
           <p>Online Patient Claiming</p>
           <div class="frm-group">

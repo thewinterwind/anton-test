@@ -32,10 +32,16 @@ class MedicationController extends CI_Controller {
 		$this->form_validation->set_rules('price', 'price', 'required');	
 
         $this->medication_model->approvePrescription($id);
+        $this->invoice_model->createInvoice($id);
+
         
         $this->session->set_flashdata('success', 'Approved - Awaiting Payment.');
 
 		redirect('doctor', 'refresh');
+    }
+
+    public function createInvoice(){
+
     }
 
 }
