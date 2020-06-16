@@ -4,6 +4,10 @@
     font-size: 18px;
 }
 
+.no-border{
+    border: 0px !important;
+}
+
 </style>
 <div class="d-flex justify-content-between">
 
@@ -38,11 +42,14 @@
 
 </div> -->
 
-<div class="row pb-3">
+<div class="row pb-3 pl-5">
     <div class="col-md-6">
-       <h6>Date Invoice Issued: 25/09/2019</h6> 
-        <h6>Date of Consultation: 25/09/2019</h6>
-        <h6>Client Name: Bernhardt Griffith</h6>
+        
+        <div class="row"><h6>Date Invoice Issued: </h6> <span class="pl-3">25/09/2019</span> </div>
+        <div class="row"><h6>Date of Consultation: </h6> <span class="pl-3">25/09/2019</span> </div>
+        <div class="row"><h6>Client Name: </h6> <span class="pl-3">Bernhardt Griffith</span> </div>
+        
+        
     </div>
 
 </div>
@@ -77,7 +84,37 @@
             
           
         </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Totals:</td>
+            <td> $<?php echo $trans['price']; ?> </td>
+            <td>$0.00</td>
+            <td> $<?php echo $trans['price']; ?> </td>
+        </tr>
     
     </tbody>
 
+</table>
+
+<table class="table no-border">
+   
+        <tr class="no-border">
+            <th class="no-border">Invoice Total</th>
+            <th class="no-border">GST</th>
+            <th class="no-border">Paid</th>
+            <th class="no-border">Owing</th>
+        </tr>
+        <tr>
+            <td class="no-border"> $<?php echo $trans['price']; ?> </td>
+            <td class="no-border">$0.00</td>
+            <?php if ($trans['status'] == 3) : ?>
+                <td class="no-border"> $<?php echo $trans['price']; ?> </td>
+                <td class="no-border">$0.00</td>
+            <?php else : ?>
+                <td class="no-border">$0.00</td>
+                <td class="no-border"> $<?php echo $trans['price']; ?> </td>
+            <?php endif; ?>
+        </tr>
+    
 </table>

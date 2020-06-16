@@ -27,6 +27,7 @@ $route['verifyRequest'] = "ClaimingAPIController/verifyRequest";
 //Invoice
 $route['createInvoice'] = "InvoiceController/createInvoice";
 $route['viewInvoice/(:any)'] = "InvoiceController/viewInvoice/$1";
+$route['creatingInvoice'] = "InvoiceController/creatingInvoice";
 
 
 // Medication and Transaction

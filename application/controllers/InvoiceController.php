@@ -11,8 +11,11 @@ class InvoiceController extends CI_Controller {
      }
 
     public function createInvoice(){
-        // print_r($this->input->post());
         $data['invoice'] = $this->invoice_model->createInvoice();
+        print_r($this->input->post());
+    }
+
+    public function creatingInvoice(){
         print_r($this->input->post());
     }
 

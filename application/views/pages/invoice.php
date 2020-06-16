@@ -124,26 +124,27 @@
     <div id="popup" class="modal-box"> 
         <a href="#" class="js-modal-close close">×</a>
       <div class="modal-body pt-3">
-        <form action="<?php echo base_url('/createInvoice'); ?>" method="post">
+        <form action="<?php echo base_url('/creatingInvoice'); ?>" method="post">
         <div class="invoice-frm-sec">
           <div class="frm-widgt">
             <h2>New Invoice</h2>
             <div class="two-way-frm">
               <div class="form-half frm-group">
                 <label>Patient</label>
-                <input type="text" placeholder="Smith, jane" name="patient" required>
+                <input type="text" value="Griffith, Bernhardt" name="patient" required>
+                <input type="hidden" name="last_name" value="Bernhardt">
+                <input type="hidden" name="first_name" value="Griffith">
                 <i class="infom">!</i>
               </div>
               <div class="form-half  frm-group">
                 <label>Bill to</label>
-                <select name="type" required>
-                  <option>Patient</option>
-                  <option>Medicare direct bill</option>
-
-                  <option>Head of family</option>
-                  <option>DVA direct bill</option>
-                  <option>Work cover</option>
-                  <option>Other</option>
+                <select name="verify" required>
+                  <option value="Patient">Patient</option>
+                  <option value="Medicare">Medicare direct bill</option>
+                  <option value="Head of family">Head of family</option>
+                  <option value="DVA">DVA direct bill</option>
+                  <option value="Work cover">Work cover</option>
+                  <option value="Other">Other</option>
                 </select>
                 <i class="infom">!</i>
               </div>
@@ -192,6 +193,14 @@
                 <img src="images/calendar.png" alt="">
               </div>
               </div>
+
+              <div class="form-half  frm-group">
+                <label>Birth Date</label>
+                <div class="dtpic">
+                <input type="text" name="birthday" required placeholder="">
+                <img src="images/calendar.png" alt="">
+              </div>
+              </div>
               
               
             </div>
@@ -230,7 +239,7 @@
           <div class="form-half  frm-group">
             <div class="d-flex flex-column address-sec">
               <a href="#" class="mb-5 logonm">
-                Jane Smith
+              Bernhardt Griffith
               </a>
               <span class="d-flex flex-column address-sec">
                   <span>Cecilia Chapman, 711-2880 Nulla St, Mankato</span>
@@ -245,8 +254,25 @@
               <input type="text" placeholder="627685212" name="med_num" required>
               <input type="text" placeholder="1" style="width: 35px; margin-left: 5px;">
             </div>
-              <span>Verified 02-05-2020</span>
+              <!-- <span>Verified 02-05-2020</span> -->
+
+              <?php if($this->session->flashdata('success')){ ?>
+    
+            <p class="my-auto text-succcess"><?php echo $this->session->flashdata('success'); ?></p>
+            <?php } ?>
+
+      <?php if($this->session->flashdata('error')){ ?>
+   
+        <p class="my-auto text-danger"><?php echo $this->session->flashdata('error'); ?></p>
+    
+      <?php } ?>
+
             </div>
+            <div class="row d-flex flex-row-reverse">
+        <button type="submit" class="btn btn-all btn-outline bdr-radius mr-5">Verify</button>
+            
+            </div>
+
           </div>
 
         </div>
