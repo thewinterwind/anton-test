@@ -19,7 +19,9 @@ class Invoice_model extends CI_Model {
             'description' => $med['description'],
             'price' => $med['price'],
             'doctors_comment' => $med['doctors_comment'],
-            'status' => $med['status']
+            'status' => $med['status'],
+            'created_at'=> date('Y-m-d H:i:s'),
+            'updated_at'=> date('Y-m-d H:i:s')
         );
         
         return $this->db->insert('invoices', $data);
@@ -32,7 +34,8 @@ class Invoice_model extends CI_Model {
 
     public function paymentSuccess($id){
         $data = array (
-            'status' => 3
+            'status' => 3,
+            'updated_at' => date('Y-m-d H:i:s')
         );
         $this->db->where('medication_id', $id);
         return $this->db->update('invoices', $data);

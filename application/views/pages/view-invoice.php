@@ -1,5 +1,32 @@
-<h1>Invoice</h1>
+<style>
 
+.sub-header{
+    font-size: 18px;
+}
+
+</style>
+<div class="d-flex justify-content-between">
+
+<span class="sub-header">TAX INVOICE/RECEIPT</span>
+
+<h4>Invoice Number: INV-<?php echo$trans['id']; ?></h4>
+
+<span  class="sub-header">ABN: 0123456789</span>
+
+</div>
+
+<hr class="p-0 m-0">
+
+<div class="row pt-5 pl-5 ml-3">
+    <div class="col-md-6">
+        <h5>Private and Confidential</h5>
+        <p class="p-0 m-0">Bernhardt Griffith</p>
+        <p class="p-0 m-0">1 Albert Street</p>
+        <p>Collingwood 3111</p>
+    </div>
+</div>
+
+<!-- 
 <div class="d-flex justify-content-between">
 <h3></h3>
 
@@ -9,21 +36,13 @@
 <h3>Balance: $<?php echo $trans['price']; ?></h3>
 <?php endif; ?>
 
-</div>
+</div> -->
 
-<div class="row">
+<div class="row pb-3">
     <div class="col-md-6">
-        <h3>Medicare</h3>
-        <h4>IRN: 2952631861</h4>
-        <h4>First Name: Bernhardt</h4>
-        <h4>Last Name: Griffith</h4>
-    </div>
-
-    <div class="col-md-6">
-        <h4>Ref: 1</h4>
-        <h4>Gender: Male</h4>
-        <h4>Date of Birth: 1974-02-28</h4>
-        
+       <h6>Date Invoice Issued: 25/09/2019</h6> 
+        <h6>Date of Consultation: 25/09/2019</h6>
+        <h6>Client Name: Bernhardt Griffith</h6>
     </div>
 
 </div>
@@ -31,27 +50,30 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Service Name</th>
-            <th>Description Name</th>
-            <th>Doctors Comment</th>
-            <th>Price</th>
-            <th>Status</th>
+            <th>Service Date</th>
+            <th>Service Type</th>
+            <th>QTY</th>
+            <th>Fee</th>
+            <th>GST</th>
+            <th>Total</th>
         </tr>
     </thead>
     <tbody>
    
         <tr>
+            <td> <?php echo $trans['created_at']; ?> </td>
             <td> <?php echo $trans['name']; ?> </td>
-            <td> <?php echo $trans['description']; ?> </td>
-            <td> <?php echo $trans['doctors_comment']; ?> </td>
-            <td> <?php echo $trans['price']; ?> </td>
-            <td>
+            <td> 1</td>
+            <td> $<?php echo $trans['price']; ?> </td>
+            <!-- <td>
                 <?php  if($trans['status'] == 2 ) : ?>
                     <a class=" bg-warning text-black">Awaiting Payment</a> 
                 <?php  else : ?>
                     <a class=" bg-success text-white">Paid</a> 
                 <?php  endif; ?>
-            </td>
+            </td> -->
+            <td>$0.00</td>
+            <td> $<?php echo $trans['price']; ?> </td>
             
           
         </tr>
