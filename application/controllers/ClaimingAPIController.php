@@ -54,7 +54,7 @@ class ClaimingAPIController extends CI_Controller {
         CURLOPT_HTTPHEADER => array(
             "Accept: application/json",
             "Content-Type: application/json",
-            "Authorization: Bearer o-CQEMmav8KGrERPmwti9Y5UcO9t4ZGf"
+            "Authorization: Bearer LYwlBAUd6NP9Og6QrEsTU-POeO_fj9xn"
         ),
         ));
 
