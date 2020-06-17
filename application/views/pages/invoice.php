@@ -15,6 +15,12 @@
       crossorigin="anonymous"
     ></script>
 
+    <style>
+    #popup{
+      left: 0px !important;
+    }
+    </style>
+
 
     <title>Billing</title> 
   </head>
@@ -66,7 +72,7 @@
               </div>
   
               <div class="sec-row" style="width: 95%">
-                <a href="" class="btn-all btn-green bdr-radius btn-color-white js-open-modal" data-modal-id="popup">New Invoice</a>
+                <a href="" class="btn-all btn-green bdr-radius btn-color-white js-open-modal new-inv" id="testing" data-modal-id="popup">New Invoice</a>
                 <div class="srcblk">
                   <input type="text" placeholder="Search"> 
                 </div>
@@ -121,25 +127,43 @@
       </div>
     </section>
 
-    <div id="popup" class="modal-box"> 
+   <?php if($this->session->flashdata('error') == "Please check the details and try again." || $this->session->flashdata('success') == "Verified") : ?>
+    <script>
+    
+     $(function(){
+        $('#popup').show('modal');
+      });
+      </script>
+
+    <?php endif; ?>
+
+    <div id="popup" class="modal-box modal" style="left: 0px !important"> 
         <a href="#" class="js-modal-close close">×</a>
       <div class="modal-body pt-3">
-        <form action="<?php echo base_url('/creatingInvoice'); ?>" method="post">
+        <form action="<?php echo base_url('/verifyInvoice'); ?>" method="post">
         <div class="invoice-frm-sec">
           <div class="frm-widgt">
             <h2>New Invoice</h2>
             <div class="two-way-frm">
               <div class="form-half frm-group">
                 <label>Patient</label>
-                <input type="text" value="Griffith, Bernhardt" name="patient" required>
-                <input type="hidden" name="last_name" value="Bernhardt">
-                <input type="hidden" name="first_name" value="Griffith">
-                <i class="infom">!</i>
+                <select id="patient" name="patient" required>
+                  <option value="0"></option>  
+                  <?php foreach($patients as $patient) : ?>
+                  <option value="<?php echo $patient['id'] ?>"> <?php echo $patient['last_name'] ?>, <?php echo $patient['first_name'] ?></option>
+                  <?php endforeach; ?>
+                </select>
+                <input type="hidden" name="last_name" id="last_name">
+                <input type="hidden" name="first_name" id="first_name">
+                <!-- <input type="text" value="Griffith, Bernhardt" name="patient" required>
+                <input type="hidden" name="last_name" value="Griffith">
+                <input type="hidden" name="first_name" value="Bernhardt">
+                <i class="infom">!</i> -->
               </div>
               <div class="form-half  frm-group">
                 <label>Bill to</label>
                 <select name="verify" required>
-                  <option value="Patient">Patient</option>
+                  <!-- <option value="Patient">Patient</option> -->
                   <option value="Medicare">Medicare direct bill</option>
                   <option value="Head of family">Head of family</option>
                   <option value="DVA">DVA direct bill</option>
@@ -165,6 +189,14 @@
                 <i class="infom">!</i>
               </div>
               <div class="form-half  frm-group">
+                <label>Gender</label>
+                <select name="gender" id="gender" required>
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                </select>
+                <i class="infom">!</i>
+              </div>
+              <div class="form-half  frm-group">
                 <label>Referral</label>
                 <div class="referral-sec">
                   <select name="referral" required>
@@ -176,7 +208,7 @@
                 <i class="infom">!</i>
               </div>
               
-              <div class="form-half  frm-group">
+              <!-- <div class="form-half  frm-group">
                 <label>Location</label>
                 <select id="country" class="width190" name="country" required>
                   <option value="Afganistan">Salvado</option>
@@ -184,7 +216,7 @@
                   
                </select>
                 <i class="infom">!</i>
-              </div>
+              </div> -->
 
               <div class="form-half  frm-group">
                 <label>Service Date</label>
@@ -196,10 +228,10 @@
 
               <div class="form-half  frm-group">
                 <label>Birth Date</label>
-                <div class="dtpic">
-                <input type="text" name="birthday" required placeholder="">
+               
+                <input type="text" id="birthday" name="birthday" required>
                 <img src="images/calendar.png" alt="">
-              </div>
+             
               </div>
               
               
@@ -209,7 +241,7 @@
             <h2  class="txt-right">Balance $0.00</h2>
             <div class="frm-group">
               <label>Invoice No</label>
-              <input class="light-grey" type="text" name="invoice_num" placeholder="INV-1" required>
+              <input class="light-grey" type="text" name="invoice_num" placeholder="INV-1">
             </div>
             <div class="frm-group">
               <label>invoice Date</label>
@@ -238,12 +270,12 @@
         <div class="crinfo d-flex">
           <div class="form-half  frm-group">
             <div class="d-flex flex-column address-sec">
-              <a href="#" class="mb-5 logonm">
-              Bernhardt Griffith
+              <a href="#" class="mb-5 logonm" value="dasda">
+              <span id="patient_name">  </span>
               </a>
               <span class="d-flex flex-column address-sec">
-                  <span>Cecilia Chapman, 711-2880 Nulla St, Mankato</span>
-                  <span>Mississippi 96522</span>
+                  <span id="address"> </span>
+                  <!-- <span>Mississippi 96522</span> -->
               </span>
             </div>
           </div>
@@ -251,14 +283,14 @@
             <div class="form-half frm-group irnn-main">
               <label>Medicare no/IRN</label>
               <div class="d-flex irnn-input">
-              <input type="text" placeholder="627685212" name="med_num" required>
-              <input type="text" placeholder="1" style="width: 35px; margin-left: 5px;">
+              <input type="text" id="med_num" name="med_num" required>
+              <input type="text" name="irn" id="irn" style="width: 35px; margin-left: 5px;">
             </div>
               <!-- <span>Verified 02-05-2020</span> -->
 
               <?php if($this->session->flashdata('success')){ ?>
     
-            <p class="my-auto text-succcess"><?php echo $this->session->flashdata('success'); ?></p>
+            <p class="my-auto text-success"><?php echo $this->session->flashdata('success'); ?></p>
             <?php } ?>
 
       <?php if($this->session->flashdata('error')){ ?>
@@ -532,5 +564,57 @@
     <script src="<?php echo base_url(); ?>assets/invoice/js/bootstrap-datepicker.js"></script>
     
     <script src="<?php echo base_url(); ?>assets/invoice/js/custom.js"></script>
+
+    <script type='text/javascript'>
+      $(document).ready(function(){
+    
+      $('#patient').change(function(){
+        var id = $(this).val();
+        $.ajax({
+        url:'<?=base_url()?>index.php/selectPatient',
+        method: 'post',
+        data: {id: id},
+        dataType: 'json',
+        success: function(response){
+          var len = response.length;
+          if(len > 0){
+            // Read values
+            var med_num = response[0].med_num;
+            var first_name = response[0].first_name;
+            var last_name = response[0].last_name;
+            var address = response[0].address;
+            var irn = response[0].irn;
+            var birthday = response[0].birthday;
+            var gender = response[0].gender;
+
+
+            $('#first_name').val(first_name);
+            $('#last_name').val(last_name);
+            $('#med_num').val(med_num);
+            $('#patient_name').text(first_name + ' ' + last_name);
+            $('#address').text(address);
+            $('#irn').val(irn);
+            $('#birthday').val(birthday);
+            $('#gender').val(gender);
+    
+          }
+    
+        }
+      });
+
+      if(id == 0){
+         $('#first_name').val();
+            $('#last_name').val();
+            $('#med_num').val("");
+            $('#patient_name').text("");
+            $('#address').text("");
+            $('#irn').val("");
+            $('#birthday').val("");
+            $('#gender').val();
+        }
+      });
+    });
+ </script>
+
   </body>
 </html>

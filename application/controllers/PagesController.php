@@ -36,8 +36,9 @@ class PagesController extends CI_Controller {
     }
 
     public function invoicePage(){
+        $data['patients'] = $this->patient_model->getAllPatient();
         $this->load->view('templates/header');
-        $this->load->view('pages/invoice');
+        $this->load->view('pages/invoice', $data);
     }
 
     public function testInvoicePage(){

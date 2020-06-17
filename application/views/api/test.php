@@ -15,13 +15,13 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTPHEADER => array(
     "Accept: application/json",
     "Content-Type: application/json",
-    "Authorization: Bearer o-CQEMmav8KGrERPmwti9Y5UcO9t4ZGf"
+    "Authorization: Bearer T7Vr1QqBIm8HaFI2QaIdPZ_3Y6IS5BjU"
   ),
 ));
 
-curl_exec($curl);
+$response = curl_exec($curl);
 
-$response = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+// $response = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
 curl_close($curl);
 echo $response;

@@ -18,6 +18,7 @@ $route['test-invoice'] = "PagesController/testInvoicePage";
 // Claiming API
 $route['test'] = "ClaimingAPIController/testRequest";
 $route['auth'] = "ClaimingAPIController/authRequest";
+$route['token'] = "ClaimingAPIController/tokenRequest";
 $route['list-payment'] = "ClaimingAPIController/listPaymentRequest";
 $route['claim'] = "ClaimingAPIController/claimRequest";
 $route['test-form-api'] = "ClaimingAPIController/testFormRequest";
@@ -28,6 +29,9 @@ $route['verifyRequest'] = "ClaimingAPIController/verifyRequest";
 $route['createInvoice'] = "InvoiceController/createInvoice";
 $route['viewInvoice/(:any)'] = "InvoiceController/viewInvoice/$1";
 $route['creatingInvoice'] = "InvoiceController/creatingInvoice";
+$route['verifyInvoice'] = "InvoiceController/verifyInvoice";
+$route['selectPatient'] = "InvoiceController/selectPatient";
+
 
 
 // Medication and Transaction

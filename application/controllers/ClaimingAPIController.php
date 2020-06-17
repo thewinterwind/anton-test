@@ -24,6 +24,10 @@ class ClaimingAPIController extends CI_Controller {
         $this->load->view('api/claim');
     }
 
+    public function tokenRequest(){
+        $this->load->view('api/token');
+    }
+
     public function testFormRequest(){
         $this->load->view('templates/header');
         $this->load->view('api/test-form');
@@ -33,10 +37,9 @@ class ClaimingAPIController extends CI_Controller {
     public function verifyRequest(){
         $input = $this->input->post();
 
-        $bday = date('Y-m-d', strtotime($input['birthday']));
+        $auth_token = $this->getAuthToken();
 
-        // print_r($bday);
-        // die();
+        $bday = date('Y-m-d', strtotime($input['birthday']));
 
         $curl = curl_init();
 
@@ -49,42 +52,55 @@ class ClaimingAPIController extends CI_Controller {
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        // CURLOPT_POSTFIELDS =>"{\r\n  \"type\": \"Verify:".$input['verify']."\",\r\n  \"patient\": {\r\n    \"dateOfBirth\": \".$bday.'\",\r\n    \"medicare\": {\r\n      \"number\": \"'.$input['irn'].'\",\r\n      \"ref\":".$input['ref']."\r\n    },\r\n    \"gender\":\"'.$input['gender']'.\",\r\n    \"name\": {\r\n      \"first\": \"'.$input['first_name'].'\",\r\n      \"family\": \"'.$input['last_name'].'\"\r\n    }\r\n  }\r\n}",
         CURLOPT_POSTFIELDS =>"{\r\n  \"type\": \"Verify:".$input['verify']."\",\r\n  \"patient\": {\r\n    \"dateOfBirth\": \"".$bday."\",\r\n    \"medicare\": {\r\n      \"number\": \"".$input['irn']."\",\r\n      \"ref\": ".$input['ref']."\r\n    },\r\n    \"gender\": \"".$input['gender']."\",\r\n    \"name\": {\r\n      \"first\": \"".$input['first_name']."\",\r\n      \"family\": \"".$input['last_name']."\"\r\n    }\r\n  }\r\n}",
         CURLOPT_HTTPHEADER => array(
             "Accept: application/json",
             "Content-Type: application/json",
-            "Authorization: Bearer LYwlBAUd6NP9Og6QrEsTU-POeO_fj9xn"
+            "Authorization: Bearer ". $auth_token
         ),
         ));
 
-        // curl_exec($curl);
 
         $response = curl_exec($curl);
 
-        // $response = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
 
-        // var_dump($response);
-
-        // var myJSON = JSON.stringify(obj);
-        // die();
-
         if (strpos($response, 'Patient details verified') !== false) {
-            $this->session->set_flashdata('success', 'Verified');
+         return  $this->session->set_flashdata('success', 'Verified');
         } else {
-            $this->session->set_flashdata('error', 'Please check the details and try again.');
+         return   $this->session->set_flashdata('error', 'Please check the details and try again.');
         }
 
+        // redirect('test-form-api', 'dash', TRUE);
+        // redirect('test-form-api')->withInput();
 
-        // if($response === 200){
-        //     $this->session->set_flashdata('success', 'Verified');
-        // } else {
-        //     $this->session->set_flashdata('error', 'Please check the details and try again.');
-        // }
+    }
 
-        redirect('test-form-api', 'dash', TRUE);
-        // redirect($this->session->flashdata('test-form-api'));
+    public function getAuthToken(){
+      
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+    CURLOPT_URL => "https://api.claiming.com.au/dev/oauth/token",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_POSTFIELDS =>"{\r\n\t\"client_id\": \"K6KNRWORSAUY45WK23U2\",\r\n\t\"client_secret\": \"ysd4xKK9MxFmtbAwxQomow3kiqHdlujmgcUFJUI3P9hgUpBKwcP6fp5uy7Dj\",\r\n\t\"grant_type\": \"client_credentials\"\r\n}",
+    CURLOPT_HTTPHEADER => array(
+        "Content-Type: application/json"
+    ),
+    ));
+
+    $response = curl_exec($curl);
+    $test = json_decode($response, true);
+    curl_close($curl);
+    $tmp = explode(',',$response,2);
+    $tmp2 = substr($tmp[0], 17);
+    return $auth_token = substr_replace($tmp2, "", -1);
 
     }
 
