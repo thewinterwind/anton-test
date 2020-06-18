@@ -8,7 +8,7 @@
   box-sizing: border-box;
 
   height: 40px;
-  width: 100%;
+  width: 60%;
 
   padding: 10px 12px;
 
