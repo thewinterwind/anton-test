@@ -66,13 +66,13 @@ class ClaimingAPIController extends CI_Controller {
         curl_close($curl);
 
         if (strpos($response, 'Patient details verified') !== false) {
-         return  $this->session->set_flashdata('success', 'Verified');
+          $this->session->set_flashdata('success', 'Verified');
         } else {
-         return   $this->session->set_flashdata('error', 'Please check the details and try again.');
+          $this->session->set_flashdata('error', 'Please check the details and try again.');
         }
 
         // redirect('test-form-api', 'dash', TRUE);
-        // redirect('test-form-api')->withInput();
+        redirect('test-form-api')->withInput();
 
     }
 
