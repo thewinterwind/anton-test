@@ -79,4 +79,10 @@ class StripeController extends CI_Controller {
         $this->load->view('templates/footer');
 
     }
+
+    public function newStripe(){
+        $this->load->view('templates/header');
+        $this->load->view('stripe/stripe');
+        $this->load->view('templates/footer');
+    }
 }

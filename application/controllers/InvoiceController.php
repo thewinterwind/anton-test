@@ -35,12 +35,13 @@ class InvoiceController extends CI_Controller {
     public function verifyInvoice(){
         $input = $this->input->post();
 
+        // var_dump($input);
+        // die();
+
         $auth_token = $this->getAuthToken();
 
         $bday = date('Y-m-d', strtotime($input['birthday']));
 
-        // var_dump($bday);
-        // die();
 
         $curl = curl_init();
 
@@ -62,15 +63,25 @@ class InvoiceController extends CI_Controller {
         ));
 
 
-        $response = curl_exec($curl);
+        $responses = curl_exec($curl);
 
         curl_close($curl);
 
-        if (strpos($response, 'Patient details verified') !== false) {
+        $response = 0;
+
+        if (strpos($responses, 'Patient details verified') !== false) {
             $this->session->set_flashdata('success', 'Verified');
-        } else {
+           } else {
             $this->session->set_flashdata('error', 'Please check the details and try again.');
-        }
+           }
+
+        // if (strpos($responses, 'Patient details verified') !== false) {
+        //     $response = 1;
+        //     return $response;
+        // } else {
+        //     $response = 2;
+        //     return $response;
+        // }
 
         // redirect('test-form-api', 'dash', TRUE);
         redirect('invoice')->withInput();

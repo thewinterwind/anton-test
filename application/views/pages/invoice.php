@@ -289,19 +289,18 @@
               <!-- <span>Verified 02-05-2020</span> -->
 
               <?php if($this->session->flashdata('success')){ ?>
-    
-            <p class="my-auto text-success"><?php echo $this->session->flashdata('success'); ?></p>
-            <?php } ?>
+                 <p class="my-auto text-success"><?php echo $this->session->flashdata('success'); ?></p>
+              <?php } ?>
 
-      <?php if($this->session->flashdata('error')){ ?>
-   
-        <p class="my-auto text-danger"><?php echo $this->session->flashdata('error'); ?></p>
-    
-      <?php } ?>
+              <?php if($this->session->flashdata('error')){ ?>
+                 <p class="my-auto text-danger"><?php echo $this->session->flashdata('error'); ?></p>
+              <?php } ?>
+              <span class="verified text-success"></span>
+              <span class="error text-danger"></span>
 
             </div>
             <div class="row d-flex flex-row-reverse">
-        <button type="submit" class="btn btn-all btn-outline bdr-radius mr-5">Verify</button>
+        <button type="submit" class="btn btn-all btn-outline bdr-radius mr-5 btn-verifyi">Verify</button>
             
             </div>
 
@@ -612,6 +611,32 @@
             $('#birthday').val("");
             $('#gender').val();
         }
+      });
+
+      $('.btn-verify').click(function(){
+        
+         var first_name = $('#first_name').val();
+         var last_name = $('#last_name').val();
+         var med_num = $('#med_num').val();
+         var irn = $('#irn').val();
+         var birthday = $('#birthday').val();
+         var gender = $('#gender').val();
+         $.ajax({
+        url:'<?=base_url()?>index.php/verifyInvoice',
+        method: 'post',
+        data: {first_name: first_name, last_name: last_name, med_num: med_num,irn: irn, birthday: birthday, gender: gender},
+        dataType: 'json',
+        success: function(response){
+          if(response){
+            $('.success').text("Verified");
+          } else {
+            $('.error').text("Please check your details and try again.")
+          }
+
+          }
+        });
+console.log("adsd")
+
       });
     });
  </script>

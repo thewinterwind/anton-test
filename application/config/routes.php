@@ -5,6 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['my-stripe'] = "StripeController";
 $route['stripePost/(:any)']['post'] = "StripeController/stripePost/$1";
 $route['stripe-button'] = "StripeController/buttonStripe";
+$route['stripe'] = "StripeController/newStripe";
 
 
 // Pages
