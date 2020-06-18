@@ -332,9 +332,9 @@ body  {
   font-weight: 900;
   font-size: 28px;
   }
-.frm-widgt h2 span{
+/* .frm-widgt h2 span{
   color: #018001
-}
+} */
  .bdr-radius{
       border-radius: 5px
   }
@@ -892,6 +892,6 @@ color: #4e4e4e
 .irnn label{
 width: auto; font-weight: 700;
 }
-.irnn span{
+/* .irnn span{
 color: green; font-weight: 700; font-size: 12px;
-}
+} */

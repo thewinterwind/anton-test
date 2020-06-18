@@ -19,6 +19,9 @@
     #popup{
       left: 0px !important;
     }
+    #result{
+      padding-left: 5px;
+    }
     </style>
 
 
@@ -162,7 +165,7 @@
               </div>
               <div class="form-half  frm-group">
                 <label>Bill to</label>
-                <select name="verify" required>
+                <select name="verify" id="verify" required>
                   <!-- <option value="Patient">Patient</option> -->
                   <option value="Medicare">Medicare direct bill</option>
                   <option value="Head of family">Head of family</option>
@@ -288,19 +291,11 @@
             </div>
               <!-- <span>Verified 02-05-2020</span> -->
 
-              <?php if($this->session->flashdata('success')){ ?>
-                 <p class="my-auto text-success"><?php echo $this->session->flashdata('success'); ?></p>
-              <?php } ?>
-
-              <?php if($this->session->flashdata('error')){ ?>
-                 <p class="my-auto text-danger"><?php echo $this->session->flashdata('error'); ?></p>
-              <?php } ?>
-              <span class="verified text-success"></span>
-              <span class="error text-danger"></span>
+              <span id="result"></span>
 
             </div>
             <div class="row d-flex flex-row-reverse">
-        <button type="submit" class="btn btn-all btn-outline bdr-radius mr-5 btn-verifyi">Verify</button>
+        <button type="button" class="btn btn-all btn-outline bdr-radius mr-5 btn-verify">Verify</button>
             
             </div>
 
@@ -565,10 +560,12 @@
     <script src="<?php echo base_url(); ?>assets/invoice/js/custom.js"></script>
 
     <script type='text/javascript'>
-      $(document).ready(function(){
     
+      $(document).ready(function(){
+
       $('#patient').change(function(){
         var id = $(this).val();
+        $('#result').removeClass().text("")
         $.ajax({
         url:'<?=base_url()?>index.php/selectPatient',
         method: 'post',
@@ -586,7 +583,6 @@
             var birthday = response[0].birthday;
             var gender = response[0].gender;
 
-
             $('#first_name').val(first_name);
             $('#last_name').val(last_name);
             $('#med_num').val(med_num);
@@ -595,9 +591,7 @@
             $('#irn').val(irn);
             $('#birthday').val(birthday);
             $('#gender').val(gender);
-    
           }
-    
         }
       });
 
@@ -614,6 +608,8 @@
       });
 
       $('.btn-verify').click(function(){
+
+        $('#result').removeClass().text("Verifying...")
         
          var first_name = $('#first_name').val();
          var last_name = $('#last_name').val();
@@ -621,21 +617,23 @@
          var irn = $('#irn').val();
          var birthday = $('#birthday').val();
          var gender = $('#gender').val();
+         var verify = $('#verify').val();
          $.ajax({
         url:'<?=base_url()?>index.php/verifyInvoice',
         method: 'post',
-        data: {first_name: first_name, last_name: last_name, med_num: med_num,irn: irn, birthday: birthday, gender: gender},
+        data: {first_name: first_name, last_name: last_name, med_num: med_num,irn: irn, birthday: birthday, gender: gender, verify: verify},
         dataType: 'json',
         success: function(response){
-          if(response){
-            $('.success').text("Verified");
+          if(response == 1){
+            $('#result').removeClass().addClass('text-success').text("Verified!");
           } else {
-            $('.error').text("Please check your details and try again.")
+            $('#result').removeClass().addClass('text-danger').text("Error. Please check the details and try again.")
           }
-
-          }
+        },
+        error: function(response){
+          console.log("ERROR")
+        }
         });
-console.log("adsd")
 
       });
     });

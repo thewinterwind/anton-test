@@ -28,6 +28,8 @@ class InvoiceController extends CI_Controller {
 
     public function selectPatient(){
         $postData = $this->input->post();
+        // var_dump($postData);
+        // die();
         $data = $this->patient_model->getPatientDetails($postData);
         echo json_encode($data);
     }
@@ -35,13 +37,9 @@ class InvoiceController extends CI_Controller {
     public function verifyInvoice(){
         $input = $this->input->post();
 
-        // var_dump($input);
-        // die();
-
         $auth_token = $this->getAuthToken();
 
         $bday = date('Y-m-d', strtotime($input['birthday']));
-
 
         $curl = curl_init();
 
@@ -67,24 +65,30 @@ class InvoiceController extends CI_Controller {
 
         curl_close($curl);
 
-        $response = 0;
+        //   $response =  10;
+        // echo json_encode($response);
 
-        if (strpos($responses, 'Patient details verified') !== false) {
-            $this->session->set_flashdata('success', 'Verified');
-           } else {
-            $this->session->set_flashdata('error', 'Please check the details and try again.');
-           }
+         if (strpos($responses, 'Patient details verified') !== false) {
+            $response = 1;
+            // echo $response;
+            echo json_encode($response);
+        } else {
+            $response = 0;
+            // echo $response;
+            echo json_encode($response);
+        }
+    
 
         // if (strpos($responses, 'Patient details verified') !== false) {
-        //     $response = 1;
-        //     return $response;
-        // } else {
-        //     $response = 2;
-        //     return $response;
-        // }
+        //     $this->session->set_flashdata('success', 'Verified');
+        //    } else {
+        //     $this->session->set_flashdata('error', 'Please check the details and try again.');
+        //    }
+
+       
 
         // redirect('test-form-api', 'dash', TRUE);
-        redirect('invoice')->withInput();
+        // redirect('invoice')->withInput();
 
     }
 
