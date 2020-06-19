@@ -14,6 +14,7 @@ $route['doctor'] = "PagesController/doctorPage";
 $route['reset'] = "PagesController/resetPage";
 $route['invoice'] = "PagesController/invoicePage";
 $route['test-invoice'] = "PagesController/testInvoicePage";
+$route['gauge-chart'] = "PagesController/graphPage";
 
 
 // Claiming API

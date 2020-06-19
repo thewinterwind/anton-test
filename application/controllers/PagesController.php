@@ -50,4 +50,10 @@ class PagesController extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
+    public function graphPage(){
+        $this->load->view('templates/header');
+        $this->load->view('pages/graph');
+        $this->load->view('templates/footer');
+    }
+
 }

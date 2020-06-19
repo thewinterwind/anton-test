@@ -48,6 +48,9 @@
       <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url(); ?>test-form-api">Test Form <span class="sr-only"></span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url(); ?>gauge-chart">Gauge Chart <span class="sr-only"></span></a>
+      </li>
     </ul>
   </div>
 </nav>
