@@ -65,6 +65,35 @@ class StripeController extends CI_Controller {
         redirect('patient', 'refresh');
     }
 
+    public function bankAccount(){
+        require_once('application/libraries/stripe-php/init.php');
+
+     // Set your secret key. Remember to switch to your live secret key in production!
+// See your keys here: https://dashboard.stripe.com/account/apikeys
+        //     \Stripe\Stripe::setApiKey('sk_test_vAZIjVouwp3KNomtAaddRWYa00dT4ncFiz');
+
+        //    $transfer = \Stripe\Transfer::create([
+        //     'amount' => 24784,
+        //     'currency' => 'aud',
+        //     'destination' => 'default_for_currency',
+        //     'source_type' => 'bank_account'
+        //     ]);
+
+        $stripe = new \Stripe\StripeClient(
+            'sk_test_vAZIjVouwp3KNomtAaddRWYa00dT4ncFiz'
+          );
+          $stripe->accounts->createExternalAccount(
+            'acct_1GTedMEJyKsJ6aTm',
+            [
+              'external_account' => 'btok_1Gwkg3EJyKsJ6aTmV2huFaMY',
+            ]
+          );
+                    
+                    var_dump($transfer);
+                    die();
+
+                }
+
     public function payment($id){
         $data['transaction'] = $this->medication_model->viewRequestedPrescription($id);
 

@@ -6,6 +6,8 @@ $route['my-stripe'] = "StripeController";
 $route['stripePost/(:any)']['post'] = "StripeController/stripePost/$1";
 $route['stripe-button'] = "StripeController/buttonStripe";
 $route['stripe'] = "StripeController/newStripe";
+$route['banks'] = "StripeController/bankAccount";
+
 
 
 // Pages
