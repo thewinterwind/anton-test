@@ -11,28 +11,68 @@ canvas {
   <div id="canvas-holder" style="width:100%">
     <canvas id="chart"></canvas>
   </div>
-  <button id="randomizeData">Randomize Data</button>
+  <!-- <button id="randomizeData">Randomize Data</button> -->
 
 <script>
-var randomScalingFactor = function() {
-  return Math.round(Math.random() * 100);
-};
 
-var randomData = function () {
+
+//you can replace these value depending form users input
+var one = 2;
+  var two = 4;
+  var three = 3;
+  var four = 1
+  var five = 5;
+
+ if(one <= 1){
+    $('#one').removeClass().addClass('red');
+ } else if (one <= 3) {
+    $('#one').removeClass().addClass('orange');
+ } else if (one <= 5) {
+    $('#one').removeClass().addClass('green');
+ }
+
+ if(two <= 1){
+    $('#two').removeClass().addClass('red');
+ } else if (two <= 3) {
+    $('#two').removeClass().addClass('orange');
+ } else if (two <= 5) {
+    $('#two').removeClass().addClass('green');
+ }
+
+ if(three <= 1){
+    $('#three').removeClass().addClass('red');
+ } else if (three <= 3) {
+    $('#three').removeClass().addClass('orange');
+ } else if (three <= 5) {
+    $('#three').removeClass().addClass('green');
+ }
+
+ if(four <= 1){
+    $('#four').removeClass().addClass('red');
+ } else if (four <= 3) {
+    $('#four').removeClass().addClass('orange');
+ } else if (four <= 5) {
+    $('#four').removeClass().addClass('green');
+ }
+
+ if(five <= 1){
+    $('#five').removeClass().addClass('red');
+ } else if (five <= 3) {
+    $('#five').removeClass().addClass('orange');
+ } else if (five <= 5) {
+    $('#five').removeClass().addClass('green');
+ }
+
+  var gaugeValue = function () {
   return [
-    randomScalingFactor(),
-    randomScalingFactor(),
-    randomScalingFactor(),
-    randomScalingFactor()
+    35,
+    65,
+    100
   ];
 };
 
-var randomValue = function (data) {
-  return Math.max.apply(null, data) * Math.random();
-};
-
-var data = randomData();
-var value = randomValue(data);
+var data = gaugeValue();
+var value = (parseInt(one) + parseInt(two) + parseInt(three) + parseInt(four) + parseInt(five)) * 4;
 
 var config = {
   type: 'gauge',
@@ -41,7 +81,7 @@ var config = {
     datasets: [{
       data: data,
       value: value,
-      backgroundColor: ['green', 'yellow', 'orange', 'red'],
+      backgroundColor: ['red', 'orange', 'green'],
       borderWidth: 2
     }]
   },
@@ -77,12 +117,5 @@ window.onload = function() {
   window.myGauge = new Chart(ctx, config);
 };
 
-document.getElementById('randomizeData').addEventListener('click', function() {
-  config.data.datasets.forEach(function(dataset) {
-    dataset.data = randomData();
-    dataset.value = randomValue(dataset.data);
-  });
 
-  window.myGauge.update();
-});
 </script>
