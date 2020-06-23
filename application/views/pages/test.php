@@ -25,6 +25,9 @@ canvas {
 
 
 </style>
+
+<h1>'Your Wellbeing'</h1>
+
 <script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
   <script src="https://unpkg.com/chartjs-gauge@0.2.0/dist/chartjs-gauge.js"></script>
   <div id="canvas-holder" style="width:100%">
