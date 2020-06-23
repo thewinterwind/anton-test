@@ -140,7 +140,8 @@ var config = {
   options: {
     responsive: true,
     title: {
-      display: true
+      display: true,
+      text: 'Gauge chart'
     },
     layout: {
       padding: {
@@ -156,11 +157,14 @@ var config = {
       lengthPercentage: 80,
       // The color of the needle
       color: 'rgba(0, 0, 0, 1)'
+    },
+    valueLabel: {
+      formatter: Math.round
     }
   }
 };
 
-// Chart.defaults.global.defaultFontSize = 50;
+Chart.defaults.global.defaultFontSize = 50;
 
 // chart.canvas.parentNode.style.height = '128px';
 

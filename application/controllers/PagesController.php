@@ -56,4 +56,9 @@ class PagesController extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
+    public function testGraph(){
+        $this->load->view('templates/header');
+        $this->load->view('pages/test');
+        $this->load->view('templates/footer');
+    }
 }
