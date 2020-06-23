@@ -119,7 +119,7 @@ var config = {
   options: {
     responsive: true,
     title: {
-      display: false
+      display: true
     },
     layout: {
       padding: {
