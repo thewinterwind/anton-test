@@ -5,13 +5,44 @@ canvas {
   -ms-user-select: none;
 }
 
+.red{
+  background-color: red;
+}
+
+.orange{
+  background-color: orange;
+}
+
+.green{
+  background-color: green;
+}
+
+.label{
+  /* padding-top: 43px;
+  margin-left: -44px; */
+  font-size: 35px;
+}
+
+
 </style>
 <script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
   <script src="https://unpkg.com/chartjs-gauge@0.2.0/dist/chartjs-gauge.js"></script>
   <div id="canvas-holder" style="width:100%">
     <canvas id="chart"></canvas>
   </div>
-  <!-- <button id="randomizeData">Randomize Data</button> -->
+
+
+
+  <div class="row">
+    
+    <div class="col-md-6 mx-auto pt-5 d-flex justify-content-around">
+     <div class="row pr-5 mr-2 d-flex justify-content-center"> <span style="width: 40px; height: 40px; border-radius: 50%" class="mx-auto" id="one"> </span> <span class="label"> Interest </span> </div>
+     <div class="row pr-5 mr-2 d-flex justify-content-center"> <span  style="width: 40px; height: 40px; border-radius: 50%" id="two"> </span> <span class="label"> Energy </span> </div>
+     <div class="row pr-5 mr-2 d-flex justify-content-center"> <span  style="width: 40px; height: 40px; border-radius: 50%" id="three"> </span> <span class="label"> Sleep </span> </div>
+     <div class="row pr-5 mr-2 d-flex justify-content-center"> <span  style="width: 40px; height: 40px; border-radius: 50%" id="four"> </span> <span class="label"> Positivity </span> </div>
+     <div class="row pr-5 d-flex justify-content-center"> <span  style="width: 40px; height: 40px; border-radius: 50%" id="five"> </span> <span class="label"> Calm </span> </div>
+    </div>
+  </div>
 
 <script>
 
