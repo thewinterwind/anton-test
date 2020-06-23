@@ -56,10 +56,10 @@ canvas {
     
     <div class="col-md-6 mx-auto pt-5 d-flex justify-content-around">
      <div class="row pr-5 mr-2 d-flex justify-content-center"> <span style="width: 40px; height: 40px; border-radius: 50%" class="mx-auto" id="one"> </span> <span class="label"> Interest </span> </div>
-     <div class="row pr-5 mr-2  d-flex justify-content-center"> <span  style="width: 40px; height: 40px; border-radius: 50%" id="two"> </span> <span class="label"> Energy </span> </div>
-     <div class="row pr-5 mr-2  d-flex justify-content-center"> <span  style="width: 40px; height: 40px; border-radius: 50%" id="three"> </span> <span class="label"> Sleep </span> </div>
-     <div class="row pr-5 mr-2  d-flex justify-content-center"> <span  style="width: 40px; height: 40px; border-radius: 50%" id="four"> </span> <span class="label"> Positivity </span> </div>
-     <div class="row pr-5  d-flex justify-content-center"> <span  style="width: 40px; height: 40px; border-radius: 50%" id="five"> </span> <span class="label"> Calm </span> </div>
+     <div class="row pr-5 mr-2 d-flex justify-content-center"> <span  style="width: 40px; height: 40px; border-radius: 50%" id="two"> </span> <span class="label"> Energy </span> </div>
+     <div class="row pr-5 mr-2 d-flex justify-content-center"> <span  style="width: 40px; height: 40px; border-radius: 50%" id="three"> </span> <span class="label"> Sleep </span> </div>
+     <div class="row pr-5 mr-2 d-flex justify-content-center"> <span  style="width: 40px; height: 40px; border-radius: 50%" id="four"> </span> <span class="label"> Positivity </span> </div>
+     <div class="row pr-5 d-flex justify-content-center"> <span  style="width: 40px; height: 40px; border-radius: 50%" id="five"> </span> <span class="label"> Calm </span> </div>
     </div>
   </div>
 
@@ -160,7 +160,7 @@ var config = {
   }
 };
 
-Chart.defaults.global.defaultFontSize = 50;
+// Chart.defaults.global.defaultFontSize = 50;
 
 // chart.canvas.parentNode.style.height = '128px';
 
