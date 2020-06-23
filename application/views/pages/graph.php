@@ -23,13 +23,26 @@ canvas {
   font-size: 35px;
 }
 
+
+@keyframes chartfix {
+        
+        0% {
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+        }
+        50% {
+            transform: scale(1.01);
+            -webkit-transform: scale(1.01);
+        }
+        100% {
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+        }
+    }
+
 </style>
 
 <h1>'Your Wellbeing'</h1>
-
-  <script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
-  <script src="https://unpkg.com/chartjs-gauge@0.2.0/dist/chartjs-gauge.js"></script>
-
 
   <div id="canvas-holder" style="width:100%">
     <canvas id="chart"></canvas>
@@ -47,7 +60,8 @@ canvas {
     </div>
   </div>
 
-
+  <script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
+  <script src="https://unpkg.com/chartjs-gauge@0.2.0/dist/chartjs-gauge.js"></script>
 
 <script>
 
