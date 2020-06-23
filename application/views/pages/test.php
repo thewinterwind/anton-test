@@ -119,8 +119,7 @@ var config = {
   options: {
     responsive: true,
     title: {
-      display: true,
-      text: 'Gauge chart'
+      display: false
     },
     layout: {
       padding: {
@@ -136,12 +135,11 @@ var config = {
       lengthPercentage: 80,
       // The color of the needle
       color: 'rgba(0, 0, 0, 1)'
-    },
-    valueLabel: {
-      formatter: Math.round
     }
   }
 };
+
+Chart.defaults.global.defaultFontSize = 50;
 
 window.onload = function() {
   var ctx = document.getElementById('chart').getContext('2d');
