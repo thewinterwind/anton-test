@@ -24,34 +24,18 @@ canvas {
 }
 
 
-@keyframes chartfix {
-        
-        0% {
-            transform: scale(1.0);
-            -webkit-transform: scale(1.0);
-        }
-        50% {
-            transform: scale(1.01);
-            -webkit-transform: scale(1.01);
-        }
-        100% {
-            transform: scale(1.0);
-            -webkit-transform: scale(1.0);
-        }
-    }
-
 </style>
 
 <h1>'Your Wellbeing'</h1>
 
-  <script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
+<script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
   <script src="https://unpkg.com/chartjs-gauge@0.2.0/dist/chartjs-gauge.js"></script>
-
   <div id="canvas-holder" style="width:100%">
     <canvas id="chart"></canvas>
   </div>
-  
-  
+
+
+
   <div class="row">
     
     <div class="col-md-6 mx-auto pt-5 d-flex justify-content-around">
@@ -63,14 +47,11 @@ canvas {
     </div>
   </div>
 
- 
-
 <script>
 
-$(document).ready(function(){
 
-  //you can replace these value depending form users input
-  var one = 2;
+//you can replace these value depending form users input
+var one = 2;
   var two = 4;
   var three = 3;
   var four = 1
@@ -130,6 +111,7 @@ var value = (parseInt(one) + parseInt(two) + parseInt(three) + parseInt(four) + 
 var config = {
   type: 'gauge',
   data: {
+    //labels: ['Success', 'Warning', 'Warning', 'Error'],
     datasets: [{
       data: data,
       value: value,
@@ -140,8 +122,7 @@ var config = {
   options: {
     responsive: true,
     title: {
-      display: true,
-      text: 'Gauge chart'
+      display: true
     },
     layout: {
       padding: {
@@ -157,24 +138,16 @@ var config = {
       lengthPercentage: 80,
       // The color of the needle
       color: 'rgba(0, 0, 0, 1)'
-    },
-    valueLabel: {
-      formatter: Math.round
     }
   }
 };
 
 Chart.defaults.global.defaultFontSize = 50;
 
-// chart.canvas.parentNode.style.height = '128px';
-
 window.onload = function() {
   var ctx = document.getElementById('chart').getContext('2d');
   window.myGauge = new Chart(ctx, config);
 };
-});
-
-
 
 
 </script>
