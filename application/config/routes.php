@@ -7,6 +7,16 @@ $route['stripePost/(:any)']['post'] = "StripeController/stripePost/$1";
 $route['stripe-button'] = "StripeController/buttonStripe";
 $route['stripe'] = "StripeController/newStripe";
 $route['banks'] = "StripeController/bankAccount";
+$route['add-doctors'] = "StripeController/addDoctors";
+$route['add-doctor'] = "StripeController/addDoctor";
+$route['create-file'] = "StripeController/createFile";
+$route['retrieve-account'] = "StripeController/retrieveAccount";
+$route['bank-transfer'] = "StripeController/bankTransfer";
+$route['add-doctors-account'] = "StripeController/addDoctorsAccount";
+$route['view-all-doctors'] = "StripeController/viewAllDoctors";
+$route['delete-doctors-account'] = "StripeController/deleteDoctorsAccount";
+$route['test-split-payment/(:any)'] = "StripeController/testSplitPayment/$1";
+$route['process-split-payment/(:any)'] = "StripeController/processSplitPayment/$1";
 
 
 
@@ -18,6 +28,8 @@ $route['invoice'] = "PagesController/invoicePage";
 $route['test-invoice'] = "PagesController/testInvoicePage";
 $route['gauge-chart'] = "PagesController/graphPage";
 $route['test-gauge'] = "PagesController/testGraph";
+
+
 
 // Claiming API
 $route['test'] = "ClaimingAPIController/testRequest";

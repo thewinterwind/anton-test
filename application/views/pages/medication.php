@@ -19,7 +19,7 @@
                 <div class="form-group" style="height: 100%">
                     <label >Price AUD:</label>
                    <select name="price" style="width: 125px">
-                        <option value="20">20</option>
+                        <option value="200">200</option>
                         <option value="30">30</option>
                    </select>
                 </div>

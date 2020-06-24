@@ -51,6 +51,9 @@
       <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url(); ?>gauge-chart">Gauge Chart <span class="sr-only"></span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url(); ?>view-all-doctors">View All Doctors <span class="sr-only"></span></a>
+      </li>
     </ul>
   </div>
 </nav>
