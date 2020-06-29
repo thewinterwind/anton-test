@@ -94,7 +94,7 @@ class StripeController extends CI_Controller {
           $stripe->transfers->create([
             'amount' => $oqea,
             'currency' => 'aud',
-            'destination' => 'acct_1Gwkn9HmlGqgMhmb',
+            'destination' => 'acct_1GxTVoGqKeqJUtAs',
             'transfer_group' => 'ORDER_95',
           ]);
                     
@@ -440,14 +440,10 @@ class StripeController extends CI_Controller {
                 ]
               ]);
           } else {
-
            $dob = date('Y-m-d', strtotime($this->input->post('individual_birthday')));
-
            $yyyy = date('Y', strtotime($dob));
            $mm = date('m', strtotime($dob));
            $dd = date('d', strtotime($dob));
-        //    var_dump($mm . $dd);
-        //    die();
             $drs = $stripe->accounts->create([
                 'type' => 'custom',
                 'country' => 'AU',
@@ -505,9 +501,6 @@ class StripeController extends CI_Controller {
               ]);
           }
          
-        //   var_dump($drs["id"]);
-        //   die();
-
         if($drs != null){
            $type = $this->input->post('type');
            $acct = $drs["id"];
@@ -532,32 +525,26 @@ class StripeController extends CI_Controller {
 
         $data['accts'] = $accts;
 
-    //    foreach($accts as $acct){
-    //     if($acct['business_type'] != 'company'){
-    //         var_dump($acct['individual']['first_name']);
-    //     }
-          
-    //    }
-
-    //    die();
-
-
-
        $this->load->view('templates/header');
        $this->load->view('pages/all-doctors', $data);
        $this->load->view('templates/footer');   
     }
 
-    public function deleteDoctorsAccount(){
+    public function deleteDoctorsAccount($acct_id){
         require_once('application/libraries/stripe-php/init.php');
 
         $stripe = new \Stripe\StripeClient(
             'sk_test_vAZIjVouwp3KNomtAaddRWYa00dT4ncFiz'
           );
           $stripe->accounts->delete(
-            'acct_1Gwkn9HmlGqgMhmb',
+            $acct_id,
             []
           );
+
+          $this->session->set_flashdata('success-deleted', 'Account Successfully Deleted');
+
+          redirect('view-all-doctors');
+
     }
 
     public function testSplitPayment($acct_id){
@@ -585,9 +572,6 @@ class StripeController extends CI_Controller {
   
          $transfer = $this->splitPayment($amount, $acct_id);
 
-        //  var_dump($transfer);
-        //  die();
-          
           if($charge['status'] == 'succeeded'){
               $this->session->set_flashdata('success-payment', 'Split payment made successfully. You can check your Stripe Account. https://dashboard.stripe.com/test/balance/overview');
           } else {
@@ -612,4 +596,152 @@ class StripeController extends CI_Controller {
 
         return true;
     }
+
+    public function viewDoctor($acct_id){
+
+        require_once('application/libraries/stripe-php/init.php');
+
+        $stripe = new \Stripe\StripeClient(
+            'sk_test_vAZIjVouwp3KNomtAaddRWYa00dT4ncFiz'
+          );
+        $data['acct'] = $acct = $stripe->accounts->retrieve(
+            $acct_id,
+            []
+          );
+
+        $this->load->view('templates/header');
+        if($acct['business_type'] == 'company'){
+            $this->load->view('pages/view-doctor-company', $data);
+        } else {
+            $this->load->view('pages/view-doctor-individual', $data);
+        }
+        $this->load->view('templates/footer');   
+    }
+
+    public function updateDoctor($acct_id){
+
+        require_once('application/libraries/stripe-php/init.php');
+
+        $stripe = new \Stripe\StripeClient(
+            'sk_test_vAZIjVouwp3KNomtAaddRWYa00dT4ncFiz'
+          );
+          $stripe->accounts->update(
+            $acct_id,
+            ['metadata' => ['order_id' => '6735']]
+          );
+
+
+          if($this->input->post('type') == 1){
+
+            $drs = $stripe->accounts->update(
+                $acct_id,
+                [
+                'email' => $this->input->post('company_email'),
+                'business_type' => 'company',
+                'company' =>  [
+                    'name' => $this->input->post('company_name'),
+                    'phone' => $this->input->post('company_phone_number'),
+                    'address' => [
+                        'city' => $this->input->post('company_city'),
+                        'country' => $this->input->post('company_country'),
+                        'line1' => $this->input->post('company_line_1'),
+                        'line2' => $this->input->post('company_line_2'),
+                        'postal_code' => $this->input->post('company_postal'),
+                        'state' => $this->input->post('company_state')
+                    ],
+                    // 'tax_id' => $this->input->post('company_tax_id'),
+                ],
+                'business_profile' => [
+                    'mcc' => '8099',
+                    'url' => 'oqea.com.au'
+                ],
+                'default_currency' => 'AUD',
+                'requested_capabilities' => [
+                  'transfers',
+                ],
+                // 'external_account' => [
+                //     'object' => 'bank_account',
+                //     'country' => 'AU',
+                //     'currency' => 'AUD',
+                //     'account_holder_name' => $this->input->post('company_account_holder'),
+                //     'account_holder_type' => $this->input->post('company_account_type'),
+                //     'routing_number' => $this->input->post('company_routing_number'), //110000
+                //     // 'account_number' => $this->input->post('company_account_number') //000123456
+                // ],
+                'settings' => [
+                    'payments' => [
+                        'statement_descriptor' => 'OQEA PTY LTD'
+                    ],
+                    'payouts' => [
+                        'debit_negative_balances' => true,
+                    ]
+                ],
+                'tos_acceptance' => [
+                    'date' => time(),
+                    'ip' => '8.8.8.8',
+                    'user_agent' => 'Oqea TOS'
+                ]]
+              );
+          } else {
+           $dob = date('Y-m-d', strtotime($this->input->post('individual_birthday')));
+           $yyyy = date('Y', strtotime($dob));
+           $mm = date('m', strtotime($dob));
+           $dd = date('d', strtotime($dob));
+
+           $drs =  $stripe->accounts->update(
+            $acct_id,
+                [
+                'business_type' => 'individual',
+                'individual' =>  [
+                    'first_name' => $this->input->post('individual_first_name'),
+                    'last_name' => $this->input->post('individual_last_name'),
+                    'dob' => [
+                        'day' => $dd,
+                        'month' => $mm,
+                        'year' => $yyyy
+                    ],
+                    'phone' => $this->input->post('individual_phone'),
+                    'address' => [
+                        'city' => $this->input->post('individual_city'),
+                        'country' => $this->input->post('individual_country'),
+                        'line1' => $this->input->post('individual_line_1'),
+                        'line2' => $this->input->post('individual_line_2'),
+                        'postal_code' => $this->input->post('individual_postal'),
+                        'state' => $this->input->post('individual_state')
+                    ],
+                    'email' => $this->input->post('individual_email'),
+                ],
+                'business_profile' => [
+                    'mcc' => '8099',
+                    'url' => 'oqea.com.au'
+                ],
+                'default_currency' => 'AUD',
+                'requested_capabilities' => [
+                    'card_payments',
+                    'transfers',
+                ],
+                'settings' => [
+                    'payments' => [
+                        'statement_descriptor' => 'OQEA PTY LTD'
+                    ],
+                    'payouts' => [
+                        'debit_negative_balances' => true,
+                    ]
+                ],
+                'tos_acceptance' => [
+                    'date' => time(),
+                    'ip' => '8.8.8.8',
+                    'user_agent' => 'Test tos'
+                ]]
+          );
+        }
+          if($drs != null){
+            $this->session->set_flashdata('success', 'Successfully Update.');
+         } else {
+             $this->session->set_flashdata('error', 'Something went wrong.');
+         }
+ 
+         redirect('view-doctor/'.$acct_id, 'refresh');
+          
+        }
 }

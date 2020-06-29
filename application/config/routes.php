@@ -14,9 +14,13 @@ $route['retrieve-account'] = "StripeController/retrieveAccount";
 $route['bank-transfer'] = "StripeController/bankTransfer";
 $route['add-doctors-account'] = "StripeController/addDoctorsAccount";
 $route['view-all-doctors'] = "StripeController/viewAllDoctors";
-$route['delete-doctors-account'] = "StripeController/deleteDoctorsAccount";
+$route['delete-doctors-account/(:any)'] = "StripeController/deleteDoctorsAccount/$1";
 $route['test-split-payment/(:any)'] = "StripeController/testSplitPayment/$1";
 $route['process-split-payment/(:any)'] = "StripeController/processSplitPayment/$1";
+$route['view-doctor/(:any)'] = "StripeController/viewDoctor/$1";
+$route['update-doctor/(:any)'] = "StripeController/updateDoctor/$1";
+
+
 
 
 
@@ -39,6 +43,11 @@ $route['list-payment'] = "ClaimingAPIController/listPaymentRequest";
 $route['claim'] = "ClaimingAPIController/claimRequest";
 $route['test-form-api'] = "ClaimingAPIController/testFormRequest";
 $route['verifyRequest'] = "ClaimingAPIController/verifyRequest";
+$route['testing-guzzle'] = "ClaimingAPIController/testingGuzzle";
+$route['auth-group'] = "ClaimingAPIController/authGroup";
+
+
+
 
 
 //Invoice

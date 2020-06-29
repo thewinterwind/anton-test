@@ -104,4 +104,55 @@ class ClaimingAPIController extends CI_Controller {
 
     }
 
+    public function testingGuzzle(){
+        $client = new \GuzzleHttp\Client();
+        // $response = $client->request('GET', 'https://api.github.com/repos/guzzle/guzzle');
+
+        // echo $response->getStatusCode(); // 200
+        // echo $response->getHeaderLine('content-type'); // 'application/json; charset=utf8'
+        // echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
+
+        // Send an asynchronous request.
+        // $request = new \GuzzleHttp\Psr7\Request('GET', 'http://httpbin.org');
+        // $promise = $client->sendAsync($request)->then(function ($response) {
+        //     echo 'I completed! ' . $response->getBody();
+        // });
+
+        $request = $client->request('GET', 'https://api.claiming.com.au/dev/oauth/token');
+        die($rerquest);
+        $response = $client->send($request, ['timeout' => 2, 'POSTFIELDS' => "{\r\n\t\"client_id\": \"K6KNRWORSAUY45WK23U2\",\r\n\t\"client_secret\": \"ysd4xKK9MxFmtbAwxQomow3kiqHdlujmgcUFJUI3P9hgUpBKwcP6fp5uy7Dj\",\r\n\t\"grant_type\": \"client_credentials\"\r\n}"
+        ]);
+
+        $promise->wait();
+    }
+
+
+    public function authGroup(){
+        $curl = curl_init();
+
+        $auth_token = $this->getAuthToken();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.claiming.com.au/dev/auth_group/list",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "Accept: application/json",
+            "Content-Type: application/json",
+            "Authorization: Bearer ". $auth_token
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+
+    }
+
 }

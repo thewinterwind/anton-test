@@ -15,6 +15,13 @@
     </div>
 <?php } ?>
 
+<?php if($this->session->flashdata('success-deleted')){ ?>
+    <div class="alert alert-success text-center my-auto">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <p class="my-auto"><?php echo $this->session->flashdata('success-deleted'); ?></p>
+    </div>
+<?php } ?>
+
 <table class="table">
     <thead>
         <tr>
@@ -22,6 +29,7 @@
             <th>Company Name</th>
             <th>First Name</th>
             <th>Last Name</th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -42,7 +50,10 @@
             <td>
                 <a class="btn btn-primary text-white" href="<?php echo site_url('test-split-payment/'. $acct['id']); ?>">Test Payment $100 AUD</a>
             </td>
-
+            <td>
+                <a class="btn btn-primary text-white" href="<?php echo site_url('view-doctor/'. $acct['id']); ?>">Edit</a>
+                <a class="btn btn-danger text-white" href="<?php echo site_url('delete-doctors-account/'. $acct['id']); ?>">Delete</a>
+            </td>
         </tr>
             <?php endforeach; ?>
     </tbody>
@@ -148,7 +159,7 @@
         </div>
     </div>
 
-    <button class="btn btn-success" type="submit">Submit</button>
+    <button class="btn btn-success mb-5" type="submit">Submit</button>
 </form>
 
 
